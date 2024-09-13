@@ -12,6 +12,7 @@ export class AuthRepository {
   private readonly authStore;
 
   constructor(@Inject(LOCALE_ID) public locale: string) {
+    // Ensure that the authStore is typed as AuthProps
     this.authStore = createStore(
       { name: 'auth' },
       withProps<AuthProps>({
@@ -26,7 +27,8 @@ export class AuthRepository {
       storage: localStorageStrategy,
     });
 
-    this.$user = this.authStore.pipe(select(state => state.user));
+    // Make sure TypeScript knows that the state is of type AuthProps
+    this.$user = this.authStore.pipe(select((state: AuthProps) => state.user));
   }
 
   getAccessTokenValue() {
@@ -49,7 +51,7 @@ export class AuthRepository {
   }
 
   isLoggedIn() {
-    return this.authStore.pipe(select(state => !!state.accessToken));
+    return this.authStore.pipe(select((state: AuthProps) => !!state.accessToken));
   }
 
   isLoggedInValue(): boolean {

@@ -3,6 +3,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+    "target": "ES6", // Override target to ES6 instead of ES2022
+    "useDefineForClassFields": false, // Ensure class fields are transpiled using the older behavior
     "types": []
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
