@@ -39,6 +39,7 @@
     "graphql": "16.8.1",
     "jwt-decode": "4.0.0",
     "rxjs": "7.8.1",
+    "testchimp-js": "^1.0.129",
     "tslib": "2.6.2",
     "zone.js": "0.14.2"
   },

@@ -18,11 +18,25 @@ import { Apollo, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { ApolloClientOptions, ApolloLink, InMemoryCache } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
+import { TestChimpSDK } from 'testchimp-js';
 
 if (environment.production) {
   enableProdMode();
   enableElfProdMode();
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  TestChimpSDK.startRecording({
+    projectId: '4b2da293-d7b5-4b15-ac98-666096911fc5',
+    sessionRecordingApiKey: 'a99cbf60-bff1-4f30-b939-e583f7d964b8',
+    endpoint: 'https://ingress-staging.testchimp.io',
+    samplingProbabilityOnError: 0.1,
+    samplingProbability: 1.0,
+    maxSessionDurationSecs: 500,
+    eventWindowToSaveOnError: 200,
+    untracedUriRegexListToTrack: '.*',
+  });
+});
 
 bootstrapApplication(AppComponent, {
   providers: [
